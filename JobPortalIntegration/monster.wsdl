@@ -1,0 +1,291 @@
+<wsdl:definitions xmlns:tns="http://www.monster.com/definitions" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:monster="http://schemas.monster.com/Monster" xmlns:mh="http://schemas.monster.com/MonsterHeader" xmlns:cat="http://webservices.monster.com/MonsterPortal" xmlns:wssec2002="http://schemas.xmlsoap.org/ws/2002/04/secext" xmlns:wssec2002a="http://schemas.xmlsoap.org/ws/2002/07/secext" xmlns:wssec2004="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" targetNamespace="http://www.monster.com/definitions" name="MonsterPowerGatewayService">
+<wsdl:types>
+<xsd:schema>
+<xsd:import namespace="http://schemas.monster.com/Monster" schemaLocation="http://schemas.monster.com/current/xsd/Monster.xsd"/>
+<xsd:import namespace="http://schemas.monster.com/MonsterHeader" schemaLocation="http://schemas.monster.com/current/xsd/MonsterHeader.xsd"/>
+<xsd:import namespace="http://webservices.monster.com/MonsterPortal" schemaLocation="http://schemas.monster.com/current/xsd/AuthenticateByCompanyAccessTicket.xsd"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/04/secext" schemaLocation="http://schemas.monster.com/current/xsd/ws-security.xsd"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/07/secext" schemaLocation="http://schemas.monster.com/current/xsd/ws-security-2002-07.xsd"/>
+<xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" schemaLocation="http://schemas.monster.com/current/xsd/ws-security-2004-01.xsd"/>
+</xsd:schema>
+</wsdl:types>
+<message name="MonsterHeader">
+<part name="header" element="mh:MonsterHeader"/>
+</message>
+<message name="CATHeader">
+<part name="header" element="cat:CompanyAuthHeader"/>
+</message>
+<message name="WSSec2002">
+<part name="header" element="wssec2002:Security"/>
+</message>
+<message name="WSSec2002a">
+<part name="header" element="wssec2002a:Security"/>
+</message>
+<message name="WSSec2004">
+<part name="header" element="wssec2004:Security"/>
+</message>
+<message name="AddOrUpdateSeekersOut">
+<part name="body" element="monster:JobSeekersResponse"/>
+</message>
+<message name="AddOrUpdateSeekerIn">
+<part name="body" element="monster:JobSeeker"/>
+</message>
+<message name="AddOrUpdateSeekerOut">
+<part name="body" element="monster:JobSeekerResponse"/>
+</message>
+<message name="GetJobSeekerByTextResumeIDChannelAliasIn">
+<part name="body" element="monster:GetJobSeekerByTextResumeIDChannelAlias"/>
+</message>
+<message name="GetJobSeekerByTextResumeIDChannelAliasResponseOut">
+<part name="body" element="monster:GetJobSeekerResponse"/>
+</message>
+<message name="GetJobSeekerAndDocumentByTextResumeIDChannelAliasIn">
+<part name="body" element="monster:GetJobSeekerAndDocumentByTextResumeIDChannelAlias"/>
+</message>
+<message name="GetJobSeekerAndDocumentByTextResumeIDChannelAliasResponseOut">
+<part name="body" element="monster:GetJobSeekerResponse"/>
+</message>
+<message name="GetJobSeekerByResumeRefCodeIn">
+<part name="body" element="monster:GetJobSeekerByResumeRefCode"/>
+</message>
+<message name="GetJobSeekerByResumeRefCodeResponseOut">
+<part name="body" element="monster:GetJobSeekerResponse"/>
+</message>
+<message name="GetJobSeekerAndDocumentByResumeRefCodeIn">
+<part name="body" element="monster:GetJobSeekerAndDocumentByResumeRefCode"/>
+</message>
+<message name="GetJobSeekerAndDocumentByResumeRefCodeResponseOut">
+<part name="body" element="monster:GetJobSeekerResponse"/>
+</message>
+<message name="DocumentQueryByTextResumeIDIn">
+<part name="body" element="monster:DocumentQueryByTextResumeID"/>
+</message>
+<message name="DocumentQueryByTextResumeIDOut">
+<part name="body" element="monster:DocumentQueryResponse"/>
+</message>
+<message name="JobSeekerDeleteBySeekerRefCodeIn">
+<part name="body" element="monster:JobSeekerDeleteBySeekerRefCode"/>
+</message>
+<message name="JobSeekerDeleteBySeekerRefCodeResponseOut">
+<part name="body" element="monster:JobSeekerResumeDeleteResponse"/>
+</message>
+<message name="JobSeekerDeleteByEmailAddressIn">
+<part name="body" element="monster:JobSeekerDeleteByEmailAddress"/>
+</message>
+<message name="JobSeekerDeleteByEmailAddressResponseOut">
+<part name="body" element="monster:JobSeekerResumeDeleteResponse"/>
+</message>
+<message name="JobSeekerDeleteByTextResumeIDIn">
+<part name="body" element="monster:JobSeekerDeleteByTextResumeID"/>
+</message>
+<message name="JobSeekerDeleteByTextResumeIDResponseOut">
+<part name="body" element="monster:JobSeekerResumeDeleteResponse"/>
+</message>
+<message name="DeactivateResumeIn">
+<part name="body" element="monster:DeactivateResume"/>
+</message>
+<message name="DeactivateResumeResponseOut">
+<part name="body" element="monster:DeactivateResumeResponse"/>
+</message>
+<portType name="PowerGatewayInterface">
+<operation name="AddOrUpdateSeeker">
+<input message="tns:AddOrUpdateSeekerIn"/>
+<output message="tns:AddOrUpdateSeekerOut"/>
+</operation>
+<operation name="GetJobSeekerByTextResumeIDChannelAlias">
+<input message="tns:GetJobSeekerByTextResumeIDChannelAliasIn"/>
+<output message="tns:GetJobSeekerByTextResumeIDChannelAliasResponseOut"/>
+</operation>
+<operation name="GetJobSeekerAndDocumentByTextResumeIDChannelAlias">
+<input message="tns:GetJobSeekerAndDocumentByTextResumeIDChannelAliasIn"/>
+<output message="tns:GetJobSeekerAndDocumentByTextResumeIDChannelAliasResponseOut"/>
+</operation>
+<operation name="GetJobSeekerByResumeRefCode">
+<input message="tns:GetJobSeekerByResumeRefCodeIn"/>
+<output message="tns:GetJobSeekerByResumeRefCodeResponseOut"/>
+</operation>
+<operation name="GetJobSeekerAndDocumentByResumeRefCode">
+<input message="tns:GetJobSeekerAndDocumentByResumeRefCodeIn"/>
+<output message="tns:GetJobSeekerAndDocumentByResumeRefCodeResponseOut"/>
+</operation>
+<operation name="DocumentQueryByTextResumeID">
+<input message="tns:DocumentQueryByTextResumeIDIn"/>
+<output message="tns:DocumentQueryByTextResumeIDOut"/>
+</operation>
+<operation name="ProcessJobSeekerDeleteBySeekerRefCode">
+<input message="tns:JobSeekerDeleteBySeekerRefCodeIn"/>
+<output message="tns:JobSeekerDeleteBySeekerRefCodeResponseOut"/>
+</operation>
+<operation name="ProcessJobSeekerDeleteByEmailAddress">
+<input message="tns:JobSeekerDeleteByEmailAddressIn"/>
+<output message="tns:JobSeekerDeleteByEmailAddressResponseOut"/>
+</operation>
+<operation name="ProcessJobSeekerDeleteByTextResumeID">
+<input message="tns:JobSeekerDeleteByTextResumeIDIn"/>
+<output message="tns:JobSeekerDeleteByTextResumeIDResponseOut"/>
+</operation>
+<operation name="DeactivateResume">
+<input message="tns:DeactivateResumeIn"/>
+<output message="tns:DeactivateResumeResponseOut"/>
+</operation>
+</portType>
+<binding name="PowerGatewayImpl" type="tns:PowerGatewayInterface">
+<soapbind:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="AddOrUpdateSeeker">
+<soapbind:operation style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="GetJobSeekerByTextResumeIDChannelAlias">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/GetJobSeekerByTextResumeIDChannelAlias" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="GetJobSeekerAndDocumentByTextResumeIDChannelAlias">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/GetJobSeekerAndDocumentByTextResumeIDChannelAlias" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="GetJobSeekerByResumeRefCode">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/GetJobSeekerByResumeRefCode" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="GetJobSeekerAndDocumentByResumeRefCode">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/GetJobSeekerAndDocumentByResumeRefCode" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="DocumentQueryByTextResumeID">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayDocumentInterface/DocumentQueryByTextResumeID" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="ProcessJobSeekerDeleteBySeekerRefCode">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/ProcessJobSeekerDeleteBySeekerRefCode" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="ProcessJobSeekerDeleteByEmailAddress">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/ProcessJobSeekerDeleteByEmailAddress" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="ProcessJobSeekerDeleteByTextResumeID">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/ProcessJobSeekerDeleteByTextResumeID" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+<operation name="DeactivateResume">
+<soapbind:operation soapAction="http://www.monster.com/definitions/BusinessGatewayJobSeekerInterface/DeactivateResume" style="document"/>
+<input>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+<soapbind:header message="tns:CATHeader" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2002a" part="header" use="literal"/>
+<soapbind:header message="tns:WSSec2004" part="header" use="literal"/>
+</input>
+<output>
+<soapbind:body parts="body" use="literal"/>
+<soapbind:header message="tns:MonsterHeader" part="header" use="literal"/>
+</output>
+</operation>
+</binding>
+<service name="MonsterPowerGatewayService">
+<documentation/>
+<port name="PowerGatewayEndpoint" binding="tns:PowerGatewayImpl">
+<soapbind:address location="https://gateway.monster.com:443/bgwPower"/>
+</port>
+</service>
+</wsdl:definitions>
